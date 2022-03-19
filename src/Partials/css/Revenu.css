@@ -9,11 +9,15 @@ hr {
   color: rgb(122, 167, 127);
 }
 
-input[type='text'], input[type='number'] {
+input[type='text'], input[type='number'], input[type='month'] {
   border: 0;
   font-weight: bold;
   padding: 5px;
   margin: 0 5px;
+}
+
+.form_section-input input[type='month'] {
+  width: 140px;
 }
 
 .Revenu-container {
@@ -65,11 +69,12 @@ input[type='text'], input[type='number'] {
 }
 
 .form_section-input input {
-  width:45%;
+  width: 120px;
+  margin-bottom: 5px;
 }
 
 .form_section-input :first-child {
-  width: 24%;
+  width: 120px;
 }
 
 .form_section-result {

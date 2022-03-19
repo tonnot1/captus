@@ -1,6 +1,6 @@
 .plus:hover {
     --b:2px; /* the thickness */
-    width:10px; /* the size */
+    width: 12px; /* the size */
     aspect-ratio:1/1;
     border:8px solid rgb(26, 37, 32); /* the outer space */
     background:
@@ -14,7 +14,7 @@
 
 .plus {
     --b:2px; /* the thickness */
-    width:10px; /* the size */
+    width: 12px; /* the size */
     aspect-ratio:1/1;
     border:8px solid rgb(208 251 204); /* the outer space */
     background:
