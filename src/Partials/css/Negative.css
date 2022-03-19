@@ -1,0 +1,27 @@
+.negative:hover {
+    --b:2px; /* the thickness */
+    width:10px; /* the size */
+    aspect-ratio:1/1;
+    border:8px solid rgb(26, 37, 32); /* the outer space */
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),rgb(26, 37, 32) 180deg,#fff 0)
+      calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+      calc(50%  + var(--b))   calc(50%  + var(--b));
+    display:inline-block;
+    border-radius:50%;
+    margin: 0 10px;
+}
+
+.negative {
+  --b:2px; /* the thickness */
+  width:10px; /* the size */
+  aspect-ratio:1/1;
+  border:8px solid rgb(208 251 204); /* the outer space */
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),rgb(208 251 204) 180deg,rgb(122 167 127) 0)
+    calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+    calc(50%  + var(--b))   calc(50%  + var(--b));
+  display:inline-block;
+  border-radius:50%;
+  margin: 0 10px;
+}
