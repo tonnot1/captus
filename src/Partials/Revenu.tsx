@@ -53,6 +53,8 @@ class Revenu extends React.Component<IMyComponentProps, IMyComponentState> {
       list.splice(i, 1);
       
       this.setState({inputList: list});
+      localStorage.setItem('revenu_tot_storage', JSON.stringify(this.simpleArraySum(list)));
+      localStorage.setItem('revenus_storage', JSON.stringify(list));
     };
 
     // handle click event of the Add button
@@ -108,8 +110,6 @@ class Revenu extends React.Component<IMyComponentProps, IMyComponentState> {
             )}
             )}
             </div>
-            
-
             
             <div className='form_section-result'>
               <div>{this.state.salaire_total}</div>

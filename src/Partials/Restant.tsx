@@ -1,4 +1,6 @@
 import React from 'react';
+import Objectifs from './Objectifs';
+//import './css/Restant.css'
 
 interface IMyComponentProps {
     props: object,
@@ -31,14 +33,16 @@ class Restant extends React.Component<IMyComponentProps, IMyComponentState> {
 
       return (
         <>
-        <div className='form_section'>
-            <h4>
-              Restant:
-            </h4>
-            <div>
-                {this.state.restant}
+            <div className='form_section_restant'>
+                <h4>
+                  Restant pour le mois:
+                </h4>
+                <div>
+                    <b>{this.state.restant}</b>
+                </div>
             </div>
-        </div>
+            <hr />
+            <Objectifs salaires={this.props.salaires} depenses={this.props.depenses} credits={this.props.credits} restant={this.state.restant} />
         </>
       );
     }

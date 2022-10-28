@@ -1,5 +1,5 @@
 import './css/Revenu.css'
-import React from 'react';
+import React, {Fragment} from 'react';
 import Restant from './Restant';
 
 interface IMyComponentProps {
@@ -110,11 +110,16 @@ class Depenses extends React.Component<IMyComponentProps, IMyComponentState> {
         const list = this.state.inputCreditList
         list.splice(i, 1);
         this.setState({inputCreditList: list});
+        localStorage.setItem('credit_tot_storage', JSON.stringify(this.simpleArraySum(list, 'credit')));
+        localStorage.setItem('credits_storage', JSON.stringify(list));
       } else {
         const list = this.state.inputList
         list.splice(i, 1);
         this.setState({inputList: list});
+        localStorage.setItem('depense_tot_storage', JSON.stringify(this.simpleArraySum(list, 'depense')));
+        localStorage.setItem('depenses_storage', JSON.stringify(list));
       }
+      
     };
 
      // handle click event of the Add button
@@ -140,7 +145,6 @@ class Depenses extends React.Component<IMyComponentProps, IMyComponentState> {
 
         this.setState({inputList: newList});
       }
-
     };
 
     componentDidMount() {
@@ -151,8 +155,27 @@ class Depenses extends React.Component<IMyComponentProps, IMyComponentState> {
       if (localStorage.getItem('credits_storage') && localStorage.getItem('credit_tot_storage')) {
         this.setState({credit_total: JSON.parse(localStorage.getItem('credit_tot_storage'))});
         this.setState({inputCreditList: JSON.parse(localStorage.getItem('credits_storage'))});
-      }
 
+        // Remove a credit by itself when it's out of date
+        const timeElapsed = Date.now();
+        const today = new Date(timeElapsed);
+        let year = today.getFullYear().toString();
+        let month: any = today.getMonth() + 1;
+        month = month.toString()
+        month = (month.length <= 1 ? "0" : "") + month;
+        let fin = year + '-' + month; 
+
+
+        let list = JSON.parse(localStorage.getItem('credits_storage'));
+        list.map((x: any, i: number) => {
+          if (list[i].fin_credit < fin) {
+            list.splice(i, 1)
+            this.setState({inputCreditList: list});
+            localStorage.setItem('credits_storage', JSON.stringify(list));
+          }
+        })
+
+      }
     }
   
     render() {
@@ -170,19 +193,30 @@ class Depenses extends React.Component<IMyComponentProps, IMyComponentState> {
               return (
                 <div className='form_section-input'>
                   <input type="text" name="depense_label" onChange={e => this.handleChange(e, i, 'depense_title')} placeholder='Titre' value={x.title} />
-                  <input type="number" name="depense_montant" onChange={e => this.handleChange(e, i, 'depense_montant')} placeholder='Montant (EUR)' value={x.  sub_depense}/>
+                  <input type="number" name="depense_montant" onChange={e => this.handleChange(e, i, 'depense_montant')} placeholder='Montant (EUR)' value={x.sub_depense}/>
 
                   {this.state.inputList.length !== 1 && 
                     <div className="negative" onClick={e => this.handleRemoveClick(i, 'depense')}></div>}
                   {this.state.inputList.length - 1 === i && 
                     <div className="plus" onClick={e => this.handleAddClick(e, i, 'depense')}></div>}
-              </div>
+                  <div className='form_section-input-label'>
+                    {/* <label>
+                      <input type="checkbox" />
+                        Fixe
+                      </label>
+                    <label>
+                      <input type="checkbox" />
+                        Variable
+                      </label> */}
+                  </div>
+                </div>
+
             )}
             )}
             </div>
 
             <div className='form_section-result'>
-              <div>{this.state.depense_total}</div>
+              <div className={`${this.props.salaires/2 < this.state.depense_total  ? "budget_out" : ""}`}>{this.state.depense_total}</div>
             </div>
           </div>
           <hr />
@@ -213,7 +247,7 @@ class Depenses extends React.Component<IMyComponentProps, IMyComponentState> {
             </div>
 
             <div className='form_section-result'>
-              <div>{this.state.credit_total}</div>
+              <div className={`${this.props.salaires/3 < this.state.credit_total  ? "budget_out" : ""}`}>{this.state.credit_total}</div>
             </div>
           </div>
           

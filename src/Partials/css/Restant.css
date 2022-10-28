@@ -1,7 +1,11 @@
-.form_section-total {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: right;
-  }  
+.form_section_restant {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.form_section_restant div {
+  margin: 0 45px;
+}

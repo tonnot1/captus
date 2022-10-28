@@ -1,0 +1,11 @@
+.form_section_objectif-input {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+
+.form_section_objectif-input > * {
+    margin: 10px 10px;
+}

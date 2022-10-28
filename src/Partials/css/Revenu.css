@@ -6,7 +6,7 @@ input:-moz-placeholder { text-align:right; }
 hr {
   width: 95%;
   border-style: solid;
-  color: rgb(122, 167, 127);
+  color: rgb(255, 255, 255);
 }
 
 input[type='text'], input[type='number'], input[type='month'] {
@@ -32,6 +32,10 @@ input[type='text'], input[type='number'], input[type='month'] {
   justify-content: start;
   /* font-size: calc(10px + 2vmin); */
   color: rgb(0, 0, 0);
+  position: absolute;
+  border-radius: 14% 14% 0 0;
+  left: 872px;
+  top: 150px;
 }
 
 .global_form {
@@ -44,6 +48,18 @@ input[type='text'], input[type='number'], input[type='month'] {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+}
+
+.form_section_restant {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.form_section_restant div {
+  margin: 0 45px;
 }
 
 .form_section-label {
@@ -68,15 +84,25 @@ input[type='text'], input[type='number'], input[type='month'] {
   justify-content: start;
 }
 
+.form_section-input-label {
+  text-align: end;
+}
+
 .form_section-input input {
-  width: 120px;
+  width: 50px;
   margin-bottom: 5px;
 }
 
-.form_section-input :first-child {
+.form_section-input > :first-child {
   width: 120px;
 }
 
 .form_section-result {
   width: 15%;
-}  
+  font-weight: bold;
+  text-align: left;
+} 
+
+.budget_out {
+  color: crimson;
+}
